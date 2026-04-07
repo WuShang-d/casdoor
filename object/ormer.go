@@ -492,4 +492,24 @@ func (a *Ormer) createTable() {
 	if err != nil {
 		panic(err)
 	}
+
+	err = a.Engine.Sync2(new(ProtectedService))
+	if err != nil {
+		panic(err)
+	}
+
+	err = a.Engine.Sync2(new(TrustPolicy))
+	if err != nil {
+		panic(err)
+	}
+
+	err = a.Engine.Sync2(new(AttestationRecord))
+	if err != nil {
+		panic(err)
+	}
+
+	err = a.Engine.Sync2(new(TrustSession))
+	if err != nil {
+		panic(err)
+	}
 }

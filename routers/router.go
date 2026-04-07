@@ -165,6 +165,16 @@ func InitAPI() {
 	web.Router("/api/update-rule", &controllers.ApiController{}, "POST:UpdateRule")
 	web.Router("/api/delete-rule", &controllers.ApiController{}, "POST:DeleteRule")
 
+	web.Router("/api/init-trust-session", &controllers.ApiController{}, "POST:InitTrustSession")
+	web.Router("/api/verify-attestation", &controllers.ApiController{}, "POST:VerifyAttestation")
+	web.Router("/api/refresh-trust-session", &controllers.ApiController{}, "POST:RefreshTrustSession")
+	web.Router("/api/get-trust-status", &controllers.ApiController{}, "GET:GetTrustStatus")
+	web.Router("/api/get-attestation-records", &controllers.ApiController{}, "GET:GetAttestationRecords")
+	web.Router("/api/get-protected-services", &controllers.ApiController{}, "GET:GetProtectedServices")
+	web.Router("/api/get-trust-policies", &controllers.ApiController{}, "GET:GetTrustPolicies")
+	web.Router("/api/update-trust-policy", &controllers.ApiController{}, "POST:UpdateTrustPolicy")
+	web.Router("/api/proxy-ai-service", &controllers.ApiController{}, "POST:ProxyProtectedAiService")
+
 	web.Router("/api/get-certs", &controllers.ApiController{}, "GET:GetCerts")
 	web.Router("/api/get-global-certs", &controllers.ApiController{}, "GET:GetGlobalCerts")
 	web.Router("/api/get-cert", &controllers.ApiController{}, "GET:GetCert")

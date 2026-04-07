@@ -118,6 +118,10 @@ import SiteListPage from "./SiteListPage";
 import SiteEditPage from "./SiteEditPage";
 import RuleListPage from "./RuleListPage";
 import RuleEditPage from "./RuleEditPage";
+import TrustDashboardPage from "./TrustDashboardPage";
+import ProtectedServicesPage from "./ProtectedServicesPage";
+import TrustPoliciesPage from "./TrustPoliciesPage";
+import AttestationRecordsPage from "./AttestationRecordsPage";
 
 function ManagementPage(props) {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -358,6 +362,10 @@ function ManagementPage(props) {
       Setting.getItem(<Link to="/agents">{i18next.t("general:Agents")}</Link>, "/agents"),
       Setting.getItem(<Link to="/servers">{i18next.t("general:MCP Servers")}</Link>, "/servers"),
       Setting.getItem(<Link to="/server-store">{i18next.t("general:MCP Store")}</Link>, "/server-store"),
+      Setting.getItem(<Link to="/trust-dashboard">Trust Dashboard</Link>, "/trust-dashboard"),
+      Setting.getItem(<Link to="/protected-services">Protected Services</Link>, "/protected-services"),
+      Setting.getItem(<Link to="/trust-policies">Trust Policies</Link>, "/trust-policies"),
+      Setting.getItem(<Link to="/attestation-records">Attestation Records</Link>, "/attestation-records"),
       Setting.getItem(<Link to="/entries">{i18next.t("general:Entries")}</Link>, "/entries"),
       Setting.getItem(<Link to="/sites">{i18next.t("general:Sites")}</Link>, "/sites"),
       Setting.getItem(<Link to="/rules">{i18next.t("general:Rules")}</Link>, "/rules"),
@@ -509,6 +517,10 @@ function ManagementPage(props) {
         <Route exact path="/servers" render={(props) => renderLoginIfNotLoggedIn(<ServerListPage account={account} {...props} />)} />
         <Route exact path="/server-store" render={(props) => renderLoginIfNotLoggedIn(<ServerStorePage account={account} {...props} />)} />
         <Route exact path="/servers/:organizationName/:serverName" render={(props) => renderLoginIfNotLoggedIn(<ServerEditPage account={account} {...props} />)} />
+        <Route exact path="/trust-dashboard" render={(props) => renderLoginIfNotLoggedIn(<TrustDashboardPage account={account} {...props} />)} />
+        <Route exact path="/protected-services" render={(props) => renderLoginIfNotLoggedIn(<ProtectedServicesPage account={account} {...props} />)} />
+        <Route exact path="/trust-policies" render={(props) => renderLoginIfNotLoggedIn(<TrustPoliciesPage account={account} {...props} />)} />
+        <Route exact path="/attestation-records" render={(props) => renderLoginIfNotLoggedIn(<AttestationRecordsPage account={account} {...props} />)} />
         <Route exact path="/entries" render={(props) => renderLoginIfNotLoggedIn(<EntryListPage account={account} {...props} />)} />
         <Route exact path="/entries/:organizationName/:entryName" render={(props) => renderLoginIfNotLoggedIn(<EntryEditPage account={account} {...props} />)} />
         <Route exact path="/sites" render={(props) => renderLoginIfNotLoggedIn(<SiteListPage account={account} {...props} />)} />

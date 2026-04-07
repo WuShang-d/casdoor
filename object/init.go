@@ -45,6 +45,7 @@ func InitDb() {
 	}
 
 	initWebAuthn()
+	initBuiltInTrustObjects()
 }
 
 func getBuiltInAccountItems() []*AccountItem {
@@ -580,6 +581,44 @@ func initBuiltInApiEnforcer() {
 	}
 
 	_, err = AddEnforcer(enforcer)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func initBuiltInTrustObjects() {
+	policy, err := GetTrustPolicyByName("built-in", DefaultTrustPolicyName)
+	if err != nil {
+		panic(err)
+	}
+	if policy == nil {
+		_, err = AddTrustPolicy(NewDefaultTrustPolicy("built-in"))
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	service, err := GetProtectedServiceByName("built-in", DefaultProtectedServiceName)
+	if err != nil {
+		panic(err)
+	}
+	if service != nil {
+		return
+	}
+
+	service = &ProtectedService{
+		Owner:       "built-in",
+		Name:        DefaultProtectedServiceName,
+		CreatedTime: util.GetCurrentTime(),
+		UpdatedTime: util.GetCurrentTime(),
+		DisplayName: "Default Protected AI Inference",
+		Description: "Mock AI inference service protected by Casdoor JWT and remote-attestation trust session checks.",
+		ModelId:     "casdoor-demo-llm-v1",
+		Endpoint:    "",
+		TrustPolicy: DefaultTrustPolicyName,
+		IsEnabled:   true,
+	}
+	_, err = AddProtectedService(service)
 	if err != nil {
 		panic(err)
 	}

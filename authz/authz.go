@@ -123,6 +123,14 @@ p, *, *, POST, /api/refresh-engines, *, *
 p, *, *, GET, /api/get-invitation-info, *, *
 p, *, *, GET, /api/faceid-signin-begin, *, *
 p, *, *, GET, /api/kerberos-login, *, *
+p, *, !anonymous, POST, /api/init-trust-session, *, *
+p, *, !anonymous, POST, /api/verify-attestation, *, *
+p, *, !anonymous, POST, /api/refresh-trust-session, *, *
+p, *, !anonymous, GET, /api/get-trust-status, *, *
+p, *, !anonymous, GET, /api/get-attestation-records, *, *
+p, *, !anonymous, GET, /api/get-protected-services, *, *
+p, *, !anonymous, GET, /api/get-trust-policies, *, *
+p, *, !anonymous, POST, /api/proxy-ai-service, *, *
 `
 
 		sa := stringadapter.NewAdapter(ruleText)
